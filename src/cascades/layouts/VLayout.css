@@ -1,0 +1,32 @@
+.v-layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.v-layout.top-to-bottom {
+    flex-direction: column;
+}
+
+.v-layout.bottom-to-top {
+    flex-direction: column-reverse;
+}
+
+.v-layout.v-left {
+    align-items: flex-start;
+}
+
+.v-layout.v-right {
+    align-items: flex-end;
+}
+
+.v-layout.v-center {
+    align-items: center;
+}
+
+.v-layout.v-stretch {
+    align-items: stretch;
+}
+
+.v-layout.v-stretch-with-space {
+    justify-content: space-around;
+}

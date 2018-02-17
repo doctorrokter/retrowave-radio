@@ -1,0 +1,23 @@
+@font-face {
+    font-family: Newtown;
+    src: url(../assets/fonts/NEWTOW_I.woff);
+}
+
+* {
+    font-family: Newtown;
+    color: #ffffff;
+}
+
+.image-view.background {
+    -webkit-filter: blur(80px);
+}
+
+.image-view.playing-slow {
+    animation: spin 8s linear infinite;
+}
+
+.image-view.playing-fast {
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }

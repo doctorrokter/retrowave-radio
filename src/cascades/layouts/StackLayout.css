@@ -1,0 +1,19 @@
+.stack-layout {
+    display: flex;
+}
+
+.stack-layout.h-left {
+    justify-content: flex-start;
+}
+
+.stack-layout.h-right {
+    justify-content: flex-end;
+}
+
+.stack-layout.h-center {
+    justify-content: center;
+}
+
+.stack-layout > * {
+    position: absolute;
+}

@@ -1,0 +1,39 @@
+.h-layout {
+    display: flex;
+}
+
+.h-layout.left-to-right {
+    flex-direction: row;
+}
+
+.h-layout.right-to-left {
+    flex-direction: row-reverse;
+}
+
+.h-layout.top-to-bottom {
+    flex-direction: column;
+}
+
+.h-layout.bottom-to-top {
+    flex-direction: column-reverse;
+}
+
+.h-layout.h-left {
+    justify-content: flex-start;
+}
+
+.h-layout.h-right {
+    justify-content: flex-end;
+}
+
+.h-layout.h-center {
+    justify-content: center;
+}
+
+.h-layout.h-stretch {
+    justify-content: space-between;
+}
+
+.h-layout.h-stretch-with-space {
+    justify-content: space-around;
+}

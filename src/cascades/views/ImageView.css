@@ -1,0 +1,11 @@
+.image-view.cover > img {
+    object-fit: cover;
+}
+
+.image-view.fill > img {
+    object-fit: fill;
+}
+
+.image-view.none > img {
+    object-fit: none;
+}
