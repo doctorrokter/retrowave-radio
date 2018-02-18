@@ -10,10 +10,10 @@ class TracksService {
             let response = JSON.parse(data);
             let tracks = response.body.tracks.map((t) => {
                 let track = new Track();
-                track.artworkUrl = 'http://retrowave.ru' + t.artworkUrl;
+                track.artworkUrl = 'https://retrowave.ru' + t.artworkUrl;
                 track.id = t.id;
                 track.title = t.title;
-                track.streamUrl = 'http://retrowave.ru' + t.streamUrl;
+                track.streamUrl = 'https://retrowave.ru' + t.streamUrl;
                 track.duration = t.duration;
                 return track;
             });
