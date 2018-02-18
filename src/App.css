@@ -8,6 +8,14 @@
     color: #ffffff;
 }
 
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 0;
+    height: 100%;
+    background-color: #313945;
+}
+
 .image-view.background {
     -webkit-filter: blur(80px);
 }
@@ -20,4 +28,26 @@
     animation: spin 4s linear infinite;
 }
 
+.list-item .active {
+    background: #CC3333;
+}
+
+.fade-in {
+    animation: fadein 1s;
+}
+
+.fade-out {
+    animation: fadeout 1s;
+}
+
 @keyframes spin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}

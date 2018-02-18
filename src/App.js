@@ -13,6 +13,7 @@ import {observer} from 'mobx-react';
 import TracksService from './services/TracksService';
 import {getMediaTime} from './utils/DateUtils';
 import AudioPlayer from './AudioPlayer';
+import ListView from './cascades/views/ListView';
 
 @observer
 class App extends React.Component {
@@ -56,13 +57,47 @@ class App extends React.Component {
                         <h1>{currentTrack.title}</h1>
                         <h2><span>{store.currentTime}</span> / <span style={{color: '#FF3333'}}>{getMediaTime(currentTrack.duration)}</span></h2>
                     </VLayout>
-                    <AudioPlayer currentTrack={currentTrack}
-                                 next={this._next}
-                                 playing={store.playing}/>
                 </VLayout>
+                <HLayout className="playlist fade-in" visible={store.showList} horizontalAlignment={HorizontalAlignment.Right} style={{position: 'absolute', right: '0'}}>
+                    <StackLayout horizontalAlignment={HorizontalAlignment.Left} style={{width: '600px', marginTop: '140px', marginRight: '25px'}}>
+                        <div style={{width: '600px', height: '800px', background: 'black', opacity: '0.25', borderRadius: '30px'}}/>
+                        <ListView style={{width: '600px', height: '760px', overflowX: 'hidden', overflowY: 'scroll'}}>
+                            {this._renderTracks()}
+                        </ListView>
+                    </StackLayout>
+                </HLayout>
+                <HLayout width="100%" horizontalAlignment={HorizontalAlignment.Right} height="100px">
+                    <StackLayout horizontalAlignment={HorizontalAlignment.Left} style={{width: '200px', marginTop: '40px', marginRight: '25px'}}>
+                        <div style={{width: '200px', height: '100px', background: 'black', opacity: '0.25', borderRadius: '30px'}}/>
+                        <HLayout height="100px" width="200px" horizontalAlignment={HorizontalAlignment.StretchWithSpace}>
+                            <ImageView height="75px" src="assets/images/list.png" onClick={this._changeListVisibility}/>
+                            <ImageView height="65px" src="assets/images/eq.png"/>
+                        </HLayout>
+                    </StackLayout>
+                </HLayout>
+                <AudioPlayer currentTrack={currentTrack}
+                             next={this._next}
+                             playing={store.playing}/>
             </StackLayout>
         );
     }
+
+    _renderTracks = () => {
+        return this.props.tracksList.tracks.map((t, index) => {
+            return (
+                <div key={t.id} onClick={this._onTrackSelected.bind(null, index)} className={this.props.tracksList.currentTrack.id === t.id ? 'active' : ''}>
+                    <HLayout horizontalAlignment={HorizontalAlignment.Stretch} height="45px" style={{paddingLeft: '10px', paddingRight: '10px'}}>
+                        <span>{t.title}</span>
+                        <span>{getMediaTime(t.duration)}</span>
+                    </HLayout>
+                </div>
+            );
+        });
+    };
+
+    _onTrackSelected = (index) => {
+        this.props.tracksList.select(index);
+    };
 
     _load = () => {
         TracksService.load().then(() => {
@@ -102,6 +137,10 @@ class App extends React.Component {
 
     _audio = () => {
         return document.querySelector('audio');
+    };
+
+    _changeListVisibility = () => {
+        this.props.tracksList.showList = !this.props.tracksList.showList;
     }
 }
 

@@ -8,12 +8,14 @@ class ListView extends PureComponent {
 
     static propTypes = {
         className: PropTypes.string,
-        style: PropTypes.object
+        style: PropTypes.object,
+        dividerVisible: PropTypes.bool
     };
 
     static defaultProps = {
         className: '',
-        style: {}
+        style: {},
+        dividerVisible: true
     };
 
     render() {
@@ -26,7 +28,7 @@ class ListView extends PureComponent {
 
     _wrap = () => {
         return this.props.children.map((c, index) => {
-            return <li className={'list-item'} key={`list_item_${index}`}>{c}</li>
+            return <li className={'list-item'} key={`list_item_${index}`} style={{borderBottom: this.props.dividerVisible ? '1px white solid' : ''}}>{c}</li>
         });
     }
 }

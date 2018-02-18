@@ -15,11 +15,17 @@ class TracksStore {
     @observable tracks = [];
     @observable currentTrack = defaultTrack();
     @observable playing = false;
+    @observable showList = false;
     currentTrackIndex = -1;
     cursor = '';
 
     @computed get currentTime() {
         return getMediaTime(this.currentTrack.currentPosition);
+    };
+
+    select = (index) => {
+        this.currentTrackIndex = index;
+        this.currentTrack = this.tracks[index];
     };
 
     next = () => {

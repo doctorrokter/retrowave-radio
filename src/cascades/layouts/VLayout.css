@@ -20,11 +20,15 @@
 }
 
 .v-layout.v-center {
+    justify-content: center;
+}
+
+.v-layout.h-center {
     align-items: center;
 }
 
 .v-layout.v-stretch {
-    align-items: stretch;
+    justify-content: stretch;
 }
 
 .v-layout.v-stretch-with-space {

@@ -26,11 +26,11 @@ class StackLayout extends AbstractLayout {
     };
 
     componentDidMount() {
-        this._computeHeight();
+        this._computeSize();
     }
 
     componentDidUpdate() {
-        this._computeHeight();
+        this._computeSize();
     }
 
     render() {
@@ -41,17 +41,28 @@ class StackLayout extends AbstractLayout {
         );
     }
 
-    _computeHeight = () => {
+    _computeSize = () => {
         if (!this.props.style.hasOwnProperty('height')) {
             let height = this._getMaxHeight();
             this._element().style.height = height + 'px';
         }
+
+        // if (!this.props.style.hasOwnProperty('width')) {
+        //     let width = this._getMaxWidth();
+        //     this._element().style.width = width + 'px';
+        // }
     };
 
     _getMaxHeight = () => {
        return Math.max.apply(null, Array.prototype.map.call(this._element().children, (c) => {
            return c.scrollHeight;
        }));
+    };
+
+    _getMaxWidth = () => {
+        return Math.max.apply(null, Array.prototype.map.call(this._element().children, (c) => {
+            return c.offsetWidth;
+        }));
     };
 
     _element = () => {

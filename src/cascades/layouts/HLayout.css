@@ -30,6 +30,10 @@
     justify-content: center;
 }
 
+.h-layout.v-center {
+    align-items: center;
+}
+
 .h-layout.h-stretch {
     justify-content: space-between;
 }
